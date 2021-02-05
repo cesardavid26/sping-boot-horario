@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,7 +47,10 @@ public class HorarioInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		
 		String mensaje = (String) request.getAttribute("mensaje");
+		
+		if(modelAndView !=null && handler instanceof HandlerMethod) {
 		modelAndView.addObject("horario", mensaje);
+		}
 	}
 
 	
