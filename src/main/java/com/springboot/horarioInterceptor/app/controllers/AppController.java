@@ -1,5 +1,6 @@
 package com.springboot.horarioInterceptor.app.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AppController {
 
+	@Value("${config.horario.apertura}")
+	private Integer apertura;
+	
+	@Value("${config.horario.cierre}")
+	private Integer cierre;
+	
 	@GetMapping({"/", "/index"})
 	public String index(Model model) {
 		
@@ -18,9 +25,9 @@ public class AppController {
 	public String cerrado(Model model) {
 		
 		StringBuilder mensaje = new StringBuilder("Cerrado, por favor visitenos desde las");
-		mensaje.append("apertura");
+		mensaje.append(apertura);
 		mensaje.append(" y las ");
-		mensaje.append("cierre");
+		mensaje.append(cierre);
 		mensaje.append(" hrs. Gracias. ");
 		
 		model.addAttribute("titulo", "fuera del servicio de atencion");
