@@ -13,4 +13,19 @@ public class AppController {
 		model.addAttribute("titulo", "Bienvenido al horario de atencion de clientes");
 		return "index";
 	}
+	
+	@GetMapping("/cerrado")
+	public String cerrado(Model model) {
+		
+		StringBuilder mensaje = new StringBuilder("Cerrado, por favor visitenos desde las");
+		mensaje.append("apertura");
+		mensaje.append(" y las ");
+		mensaje.append("cierre");
+		mensaje.append(" hrs. Gracias. ");
+		
+		model.addAttribute("titulo", "fuera del servicio de atencion");
+		model.addAttribute("mensaje", mensaje);
+		
+		return "cerrado";
+	}
 }
